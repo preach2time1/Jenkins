@@ -16,7 +16,7 @@ pipeline{
             }
         }
         stage('thirdstage'){
-            agent a rny
+            agent any
             steps{
                 sh 'echo this 3rd stage'                       
             }
