@@ -1,9 +1,9 @@
 currentBuild.displayname = "test-ui #"+currentBuild.number
 
-pipeline{
+pipeline {
     
     agent {
-            docker{
+            docker {
                 image 'maven'
             }
        }
