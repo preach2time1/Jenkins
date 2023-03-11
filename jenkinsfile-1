@@ -1,25 +1,31 @@
 pipeline{
 
-    agent none
+    agent {
+            docker{
+                image 'maven'
+            }
+       }
     stages {
       
         stage('init'){
-            agent any
-            steps{
+           steps{
                 sh 'echo this first stage'                       
             }
         }
          stage('secondstage'){
-             agent {label 'master' }
-            steps{
-                sh 'echo this 2nd stage'                       
+             steps{
+                sh 'mvn --version'                       
             }
         }
         stage('thirdstage'){
-            agent any
             steps{
                 sh 'echo this 3rd stage'                       
             }
+        }
+    }
+    post{
+        always{
+            cleanWs()
         }
     }
 }
