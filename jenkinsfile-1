@@ -1,4 +1,4 @@
-currentBuild.displayname = "test-ui #"+currentBuild.number
+currentBuild.displayName = "test-ui #"+currentBuild.number
 
 pipeline {
     
