@@ -1,23 +1,19 @@
-currentBuild.displayName = "test-ui #"+currentBuild.number
+pipeline{
 
-
-pipeline {
-    
     agent {
-            docker {
-                image 'maven'
+           docker {
+               image 'maven'
             }
-       }
-    stages {
-         currentBuild.description = "executed on"+ env.BRANCH_NAME
-        stage('init'){
-           steps{
-               
+          }
+      stages{
+
+         stage('init'){
+            steps{
                 sh 'echo this first stage'                       
             }
         }
          stage('secondstage'){
-             steps{
+            steps{
                 sh 'mvn --version'                       
             }
         }
@@ -29,7 +25,7 @@ pipeline {
     }
     post{
         always{
-            cleanWs()
+    cleanWs()
         }
     }
 }
