@@ -5,7 +5,7 @@ pipeline{
 
     environment{
         script_options = "--clean 30"
-        doocker_password =credentials('docker-usr-pass')
+        docker_password =credentials('docker-usr-pass')
     }
     agent any
     stages{
