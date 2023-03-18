@@ -53,6 +53,5 @@ pipeline{
     post{
         always{
     cleanWs()
-        }
+       }
     }
-}
