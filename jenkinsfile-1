@@ -15,7 +15,7 @@ pipeline{
                 script{
                 echo "$script_options" 
                  sh 'echo this first stage' 
-                 sh 'docker login -u valentine -p $docker_password'
+                 sh 'docker login -u preach2time1 -p $docker_password'
                  }                                     
             }
         }
