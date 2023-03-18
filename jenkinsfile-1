@@ -10,8 +10,15 @@ pipeline{
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
-
+        timeout(time: 2, unit 'MINUTES')
+        timestamps()
         }
+        parameters { 
+            string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: 'this is env') }
+            text(name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: 'this is deployment notes') 
+            
+            }
+
     agent any
     stages{
 
@@ -46,4 +53,3 @@ pipeline{
     cleanWs()
         }
     }
-}
