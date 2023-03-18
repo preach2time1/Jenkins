@@ -14,9 +14,9 @@ pipeline{
         timestamps()
         }
         parameters { 
-            string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: 'this is env') }
-            text (name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: 'this is deployment notes') 
-            
+            string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: 'this is env') 
+            text(name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: 'this is deployment notes')
+
             }
 
     agent any
@@ -24,20 +24,20 @@ pipeline{
 
          stage('init'){
             steps{
-            timeout(1){
-                 script{
-                     echo "$script_options" 
-                     sh 'echo this first stage' 
-                     sh 'docker login -u $docker_password_USR -p $docker_password_PSW'
-                   }                                     
-                 }
-             }
+                timeout(1){
+                script{
+                    echo "$script_options" 
+                    sh 'echo this first stage' 
+                    sh 'docker login -u $docker_password_USR -p $docker_password_PSW'
+                  }                                     
+                }
+            }
          }
          stage('secondstage'){
             agent {
-                     docker{
+                    docker{
                         image 'maven'
-                     }                      
+                   }                      
             }
         steps{
             sh 'printenv'
@@ -53,5 +53,6 @@ pipeline{
     post{
         always{
     cleanWs()
-       }
+        }
     }
+}
