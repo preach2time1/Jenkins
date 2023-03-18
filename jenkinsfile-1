@@ -10,7 +10,7 @@ pipeline{
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout (time: 2, unit: 'MINUTES')
+        timeout(time: 2, unit: 'MINUTES')
         timestamps()
         }
         parameters { 
@@ -24,6 +24,7 @@ pipeline{
 
          stage('init'){
             steps{
+            timeout(1){
                 script{
                 echo "$script_options" 
                  sh 'echo this first stage' 
