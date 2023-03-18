@@ -1,23 +1,34 @@
 currentBuild.displayName = "test-ui #"+currentBuild.number
 
+
 pipeline{
 
-    agent {
-           docker {
-               image 'maven'
-            }
-          }
-      stages{
+    environment{
+        script_options = "--clean 30"
+        doocker_password =credentials('docker-pass')
+    }
+    agent any
+    stages{
 
          stage('init'){
             steps{
-                sh 'echo this first stage'                       
+                script{
+                echo "$script_options" 
+                 sh 'echo this first stage' 
+                 sh 'docker login -u valentine -p $docker_password'
+                 }                                     
             }
         }
          stage('secondstage'){
-            steps{
-                sh 'mvn --version'                       
+            agent {
+                     docker{
+                        image 'maven'
+                     }                      
             }
+        steps{
+            sh 'printenv'
+            sh 'mvn --version'
+        }
         }
         stage('thirdstage'){
             steps{
