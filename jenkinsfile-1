@@ -1,7 +1,7 @@
 currentBuild.displayName = "test-ui #"+currentBuild.number
 
 
- pipeline {
+pipeline {
 
     environment{
         script_options = "--clean 30"
