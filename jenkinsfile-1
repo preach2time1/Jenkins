@@ -8,7 +8,7 @@ pipeline{
         docker_password =credentials('docker-usr-pass')
     }
 
-    option {
+    options {
         buildDiscarder(logRotator(numTokeepStr: '5'))
 
         }
