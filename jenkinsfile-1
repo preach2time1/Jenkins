@@ -25,13 +25,14 @@ pipeline{
          stage('init'){
             steps{
             timeout(1){
-                script{
-                echo "$script_options" 
-                 sh 'echo this first stage' 
-                 sh 'docker login -u $docker_password_USR -p $docker_password_PSW'
-                 }                                     
-            }
-        }
+                 script{
+                     echo "$script_options" 
+                     sh 'echo this first stage' 
+                     sh 'docker login -u $docker_password_USR -p $docker_password_PSW'
+                   }                                     
+                 }
+             }
+         }
          stage('secondstage'){
             agent {
                      docker{
@@ -53,4 +54,5 @@ pipeline{
         always{
     cleanWs()
         }
+    }
     }
