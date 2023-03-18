@@ -8,11 +8,17 @@ pipeline{
         docker_password =credentials('docker-usr-pass')
     }
 
-    options{
+    option{
         buildDiscarder(logRotator(numToKeepStr: '5'))
-        timeout(time: 2, unit: 'MINUTES')
+        timeout(time: 1, unit: 'MINUTES')
         timestamps()
         }
+    parameters { 
+        string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: 'this is env')
+        text(name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: 'this is deployment notes') }
+       
+        }
+
 
     agent any
     stages{
@@ -24,7 +30,6 @@ pipeline{
                 echo "$script_options" 
                  sh 'echo this first stage' 
                  sh 'docker login -u $docker_password_USR -p $docker_password_PSW'
-                 sh 'sleep 80'
                  }
                  }
             }
