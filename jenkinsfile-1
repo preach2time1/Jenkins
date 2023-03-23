@@ -39,12 +39,9 @@ pipeline{
                 }
             }
          }
+        parallel {
          stage('secondstage'){
-
-            when{
-               expression { DEPLOY_ENV ==~ "prod" }
-            }
-            agent {
+             agent {
                     docker{
                         image 'maven'
                    }                      
@@ -58,6 +55,7 @@ pipeline{
             steps{
                 sh 'echo this 3rd stage'                       
             }
+        }
         }
     }
     post{
